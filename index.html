@@ -3,214 +3,251 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bingo Party: Offline Games</title>
-  <meta name="description" content="Bingo Party is a colorful single-player Bingo adventure with island levels, stars, coins, hints, music, and relaxing gameplay.">
+  <title>Lucky Surf Bingo — Sunny Bingo Adventure</title>
+  <meta name="description" content="Lucky Surf Bingo is a colorful single-player Bingo adventure with sunny harbor levels, satisfying number calls, hints, scores, and relaxing play.">
   <style>
     :root {
-      --bg: #073947;
-      --panel: #0d5868;
-      --accent: #ffcc38;
-      --coral: #ff5c3e;
-      --text: #ffffff;
-      --muted: #d8f5f6;
+      --navy: #062f43;
+      --deep: #031f2c;
+      --teal: #08a1a7;
+      --mint: #2bc6ac;
+      --gold: #ffc83d;
+      --cream: #fff6dc;
+      --coral: #ff704f;
+      --white: #fff;
     }
 
     * { box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #0aa8be 0%, var(--bg) 64%, #062932 100%);
+      color: var(--white);
+      background: var(--deep);
+      font-family: ui-rounded, "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
       line-height: 1.55;
     }
+    a { color: inherit; }
 
-    header {
-      min-height: 74vh;
+    .nav {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 50%;
+      width: min(1180px, calc(100% - 40px));
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .brand { font-size: 20px; font-weight: 900; letter-spacing: .02em; text-decoration: none; }
+    .nav-link { color: var(--cream); font-weight: 800; text-decoration: none; }
+
+    .hero {
+      position: relative;
+      min-height: 780px;
       display: grid;
       align-items: center;
-      padding: 56px 24px;
+      overflow: hidden;
       background:
-        linear-gradient(90deg, rgba(4, 33, 43, .78), rgba(4, 33, 43, .24)),
-        url("assets/web/iphone_6_5_01.jpg") center / cover no-repeat;
+        linear-gradient(90deg, rgba(3,31,44,.96) 0%, rgba(3,31,44,.82) 42%, rgba(3,31,44,.18) 100%),
+        url("assets/source/lucky-surf-bingo-celebration.png") center / cover no-repeat;
     }
-
-    .hero, main {
-      width: min(1120px, 100%);
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 180px;
+      background: linear-gradient(transparent, var(--deep));
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
+      padding: 130px 0 90px;
     }
-
-    h1 {
-      max-width: 760px;
-      margin: 0 0 12px;
-      font-size: clamp(44px, 7vw, 92px);
-      line-height: .95;
-      letter-spacing: 0;
-    }
-
-    .tagline {
-      max-width: 680px;
-      margin: 0 0 28px;
-      color: #fff1aa;
-      font-size: clamp(22px, 3vw, 36px);
-      font-weight: 700;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .badge {
-      border: 2px solid rgba(255,255,255,.82);
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 15px;
+      border: 2px solid rgba(255,255,255,.75);
       border-radius: 999px;
-      padding: 10px 18px;
-      background: rgba(7, 99, 117, .78);
-      color: #fff;
-      font-weight: 700;
+      color: var(--cream);
+      background: rgba(8,161,167,.72);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+    h1 {
+      max-width: 730px;
+      margin: 22px 0 14px;
+      color: var(--white);
+      font-size: clamp(58px, 9vw, 118px);
+      line-height: .88;
+      letter-spacing: -.055em;
+      text-shadow: 0 7px 0 rgba(0,0,0,.18);
+    }
+    h1 span { display: block; color: var(--gold); }
+    .lead {
+      max-width: 630px;
+      margin: 0 0 30px;
+      color: var(--cream);
+      font-size: clamp(20px, 3vw, 31px);
+      font-weight: 800;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill {
+      padding: 11px 17px;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 999px;
+      background: rgba(2,35,48,.66);
+      font-weight: 800;
+      backdrop-filter: blur(8px);
     }
 
-    main {
-      padding: 48px 24px 64px;
-    }
+    main { overflow: hidden; }
+    .section { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 72px 0; }
+    .section-head { max-width: 760px; margin-bottom: 34px; }
+    h2 { margin: 0 0 12px; font-size: clamp(36px, 5vw, 62px); line-height: 1; letter-spacing: -.035em; }
+    .section-head p, .about-copy { margin: 0; color: #cfecef; font-family: Arial, Helvetica, sans-serif; font-size: 19px; }
 
-    section {
-      margin: 0 0 54px;
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.05;
-    }
-
-    p {
-      max-width: 760px;
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .feature {
-      min-height: 110px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 8px;
-      padding: 18px;
-      background: rgba(255,255,255,.09);
+      min-height: 190px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(16,110,121,.56), rgba(7,54,70,.72));
+      box-shadow: inset 0 1px rgba(255,255,255,.1);
     }
-
-    .feature strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #fff;
-      font-size: 19px;
-    }
-
-    .gallery {
+    .feature .ball {
+      width: 54px;
+      height: 54px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
+      place-items: center;
+      margin-bottom: 17px;
+      border: 4px solid var(--cream);
+      border-radius: 50%;
+      color: var(--navy);
+      background: var(--gold);
+      box-shadow: 0 6px 0 rgba(0,0,0,.16);
+      font-weight: 900;
     }
+    .feature h3 { margin: 0 0 7px; font-size: 21px; }
+    .feature p { margin: 0; color: #cfecef; font-family: Arial, Helvetica, sans-serif; }
 
-    .gallery img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      border: 2px solid rgba(255,255,255,.24);
-      background: rgba(0,0,0,.18);
+    .gallery-wrap { background: linear-gradient(180deg, #073d50, #042b3b); }
+    .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .shot {
+      margin: 0;
+      overflow: hidden;
+      border: 2px solid rgba(255,216,95,.46);
+      border-radius: 22px;
+      background: var(--navy);
+      box-shadow: 0 18px 44px rgba(0,0,0,.26);
     }
+    .shot img { width: 100%; height: auto; display: block; }
+    .shot figcaption { padding: 12px 16px 15px; color: var(--cream); font-size: 14px; font-weight: 800; }
 
-    .meta {
+    .about { display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: start; }
+    .facts {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      padding: 22px;
-      border-radius: 8px;
-      background: rgba(3, 25, 32, .46);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 22px;
+      background: rgba(255,255,255,.11);
     }
+    .fact { display: flex; justify-content: space-between; gap: 20px; padding: 16px 19px; background: rgba(2,31,44,.72); }
+    .fact span:first-child { color: #a9d9de; }
+    .fact strong, .fact a { text-align: right; }
 
-    .meta div {
-      color: var(--muted);
+    footer { padding: 34px 20px; color: #a9d9de; text-align: center; background: #021821; }
+    footer a { color: var(--gold); font-weight: 800; }
+
+    @media (max-width: 900px) {
+      .hero { min-height: 700px; background-position: 61% center; }
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .about { grid-template-columns: 1fr; }
     }
-
-    .meta strong {
-      display: block;
-      color: #fff1aa;
-    }
-
-    a {
-      color: #fff1aa;
-    }
-
-    footer {
-      padding: 28px 24px 42px;
-      color: rgba(255,255,255,.78);
-      text-align: center;
-      background: rgba(0,0,0,.18);
+    @media (max-width: 620px) {
+      .nav { padding-top: 18px; }
+      .hero { min-height: 690px; background-position: 58% center; }
+      .hero-inner { padding-top: 112px; }
+      .gallery, .feature-grid { grid-template-columns: 1fr; }
+      .section { padding: 54px 0; }
+      .fact { display: block; }
+      .fact strong, .fact a { display: block; margin-top: 3px; text-align: left; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="hero">
-      <h1>Bingo Party</h1>
-      <p class="tagline">Classic Bingo fun across a bright island adventure.</p>
-      <div class="badge-row" aria-label="Game highlights">
-        <span class="badge">Single Player</span>
-        <span class="badge">50 Levels</span>
-        <span class="badge">Stars & Coins</span>
-        <span class="badge">No Sign-In</span>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="#top">Lucky Surf Bingo</a>
+    <a class="nav-link" href="privacy.html">Privacy</a>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="eyebrow">B • I • N • G • O</div>
+      <h1>Lucky Surf <span>Bingo</span></h1>
+      <p class="lead">Classic calls, sunny escapes, and satisfying Bingo moments—one colorful card at a time.</p>
+      <div class="pills" aria-label="Game highlights">
+        <span class="pill">Single Player</span>
+        <span class="pill">Quick Rounds</span>
+        <span class="pill">Simple Controls</span>
+        <span class="pill">No Sign-In</span>
       </div>
     </div>
   </header>
 
   <main>
-    <section>
-      <h2>About the Game</h2>
-      <p>Bingo Party: Offline Games is a colorful casual Bingo adventure designed for quick, relaxing play. Tap called numbers, complete Bingo lines, earn coins, collect stars, and continue your journey across island-themed levels.</p>
-      <p>The game is easy to learn, comfortable to play, and built around clear boards, cheerful audio, saved progress, and satisfying Bingo moments.</p>
-      <div class="features">
-        <div class="feature"><strong>Classic Bingo</strong>Mark called numbers and complete the target Bingo pattern.</div>
-        <div class="feature"><strong>Level Progress</strong>Play through 50 progressively challenging levels.</div>
-        <div class="feature"><strong>Rewards</strong>Earn score, coins, and star ratings as you advance.</div>
-        <div class="feature"><strong>Relaxed Play</strong>Enjoy music, sound effects, hints, and simple controls.</div>
+    <section class="section" aria-labelledby="features-title">
+      <div class="section-head">
+        <h2 id="features-title">Catch the lucky wave</h2>
+        <p>Follow each call, tap matching numbers, and complete your Bingo line against a glowing tropical harbor.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature"><div class="ball">B</div><h3>Classic Bingo</h3><p>Clear number calls and an easy-to-read 5×5 card make every round instantly familiar.</p></article>
+        <article class="feature"><div class="ball">I</div><h3>Sunny Levels</h3><p>Progress through colorful harbor stages with fresh cards and satisfying goals.</p></article>
+        <article class="feature"><div class="ball">N</div><h3>Helpful Hints</h3><p>Use simple hints when you want a little help spotting the next match.</p></article>
+        <article class="feature"><div class="ball">GO!</div><h3>Feel-Good Wins</h3><p>Build your score, mark your line, and enjoy a bright Bingo celebration.</p></article>
       </div>
     </section>
 
-    <section>
-      <h2>Screenshots</h2>
-      <p>Compressed preview images are shown below. Full-size App Store screenshots are included in the `screenshots` folder.</p>
-      <div class="gallery">
-        <img src="assets/web/iphone_6_5_01.jpg" alt="Bingo Party App Store screenshot showing classic bingo gameplay">
-        <img src="assets/web/iphone_6_5_02.jpg" alt="Bingo Party screenshot showing marked numbers">
-        <img src="assets/web/iphone_6_5_03.jpg" alt="Bingo Party screenshot showing island level play">
-        <img src="assets/web/ipad_13_01.jpg" alt="Bingo Party iPad screenshot preview">
-        <img src="assets/web/ipad_13_02.jpg" alt="Bingo Party iPad gameplay preview">
-      </div>
-    </section>
+    <div class="gallery-wrap">
+      <section class="section" aria-labelledby="gallery-title">
+        <div class="section-head">
+          <h2 id="gallery-title">Bingo by the sea</h2>
+          <p>Real gameplay presented in compressed previews for fast loading. Full-resolution App Store artwork is included with the submission assets.</p>
+        </div>
+        <div class="gallery">
+          <figure class="shot"><img src="assets/web/iphone_6_5_01.jpg" alt="Lucky Surf Bingo gameplay at Sunny Harbor" loading="lazy"><figcaption>Classic calls. Sunny escapes.</figcaption></figure>
+          <figure class="shot"><img src="assets/web/iphone_6_5_02.jpg" alt="Lucky Surf Bingo card with marked numbers" loading="lazy"><figcaption>Tap, mark, and complete your line.</figcaption></figure>
+          <figure class="shot"><img src="assets/web/iphone_6_5_03.jpg" alt="Colorful tropical Bingo gameplay" loading="lazy"><figcaption>Ride the lucky wave.</figcaption></figure>
+          <figure class="shot"><img src="assets/web/ipad_13_04.jpg" alt="Lucky Surf Bingo on iPad" loading="lazy"><figcaption>Chase bigger scores.</figcaption></figure>
+        </div>
+      </section>
+    </div>
 
-    <section>
-      <h2>App Store Information</h2>
-      <div class="meta">
-        <div><strong>App Name</strong>Bingo Party: Offline Games</div>
-        <div><strong>Display Name</strong>Bingo Party</div>
-        <div><strong>Category</strong>Games / Board / Casual</div>
-        <div><strong>Developer Contact</strong><a href="mailto:508923216@qq.com">508923216@qq.com</a></div>
+    <section class="section about" aria-labelledby="about-title">
+      <div>
+        <div class="section-head">
+          <h2 id="about-title">Relax into every round</h2>
+        </div>
+        <p class="about-copy">Lucky Surf Bingo brings the timeless rhythm of Bingo to a warm cruise-deck getaway. Mark called numbers, use hints, build your score, and move through cheerful levels designed for quick, comfortable single-player sessions.</p>
+      </div>
+      <div class="facts" aria-label="Game information">
+        <div class="fact"><span>Game</span><strong>Lucky Surf Bingo</strong></div>
+        <div class="fact"><span>Category</span><strong>Games / Board / Casual</strong></div>
+        <div class="fact"><span>Platform</span><strong>iPhone &amp; iPad</strong></div>
+        <div class="fact"><span>Support</span><a href="mailto:508923216@qq.com">508923216@qq.com</a></div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div>© 2026 Bingo Party. All rights reserved. <a href="privacy.html">Privacy Policy</a></div>
-  </footer>
+  <footer>© 2026 Lucky Surf Bingo. All rights reserved. · <a href="privacy.html">Privacy Policy</a></footer>
 </body>
 </html>
